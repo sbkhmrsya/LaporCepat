@@ -8,19 +8,13 @@ import { View, Text, Pressable, StyleSheet } from 'react-native';
 // Task 03: Accessibility (label deskriptif per kartu, touch target)
 // ============================================================
 
-const laporanPrioritas = [
-  { id: '1', judul: 'Lampu Jalan Mati', lokasi: 'Jl. Merdeka No. 12', status: 'Diverifikasi', emoji: '💡' },
-  { id: '2', judul: 'Jalan Berlubang', lokasi: 'Depan Gang Mawar', status: 'Dikerjakan', emoji: '🕳️' },
-  { id: '3', judul: 'Saluran Air Tersumbat', lokasi: 'RT 04 / RW 02', status: 'Dilaporkan', emoji: '🌊' },
-];
-
 const statusColor = {
   Diverifikasi: { bg: '#FEF3C7', text: '#B45309' },
   Dikerjakan: { bg: '#DBEAFE', text: '#1D4ED8' },
   Dilaporkan: { bg: '#FFE4D6', text: '#C2410C' },
 };
 
-export default function ReportList({ isLayarLebar }) {
+export default function ReportList({ isLayarLebar, laporan = [] }) {
   return (
     <View>
       <Text style={styles.sectionTitle}>Laporan Prioritas</Text>
@@ -30,7 +24,7 @@ export default function ReportList({ isLayarLebar }) {
           { flexDirection: isLayarLebar ? 'row' : 'column', flexWrap: 'wrap' },
         ]}
       >
-        {laporanPrioritas.map((item) => {
+        {laporan.map((item) => {
           const warna = statusColor[item.status] || { bg: '#F1F5F9', text: '#475569' };
           return (
             <Pressable

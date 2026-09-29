@@ -17,7 +17,7 @@ import ReportList from '../components/ReportList';
 // dan Bottom Navigation.
 // Task 01: UI dasar | Task 02: Responsive | Task 03: Accessibility
 // ============================================================
-export default function HomeScreen() {
+export default function HomeScreen({ laporan, onNavigate = () => {} }) {
   const { width } = useWindowDimensions();
   const isLayarLebar = width >= 600;
 
@@ -44,6 +44,7 @@ export default function HomeScreen() {
                 styles.primaryButton,
                 pressed && styles.primaryButtonPressed,
               ]}
+              onPress={() => onNavigate('buat')}
               accessible={true}
               accessibilityLabel="Buat laporan baru"
               accessibilityRole="button"
@@ -54,24 +55,25 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        <ReportList isLayarLebar={isLayarLebar} />
+        <ReportList isLayarLebar={isLayarLebar} laporan={laporan} />
       </ScrollView>
 
       {/* BOTTOM NAVIGATION */}
       <View style={styles.bottomNav}>
         <NavItem label="Beranda" icon="🏠" active />
         <NavItem label="Peta" icon="🗺️" />
-        <NavItem label="Lapor" icon="➕" />
+        <NavItem label="Lapor" icon="➕" onPress={() => onNavigate('buat')} />
         <NavItem label="Profil" icon="👤" />
       </View>
     </View>
   );
 }
 
-function NavItem({ label, icon, active }) {
+function NavItem({ label, icon, active, onPress }) {
   return (
     <Pressable
       style={styles.navItem}
+      onPress={onPress}
       accessible={true}
       accessibilityLabel={label}
       accessibilityRole="button"
