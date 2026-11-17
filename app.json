@@ -1,7 +1,0 @@
-{
-  "plugins": [
-    "expo-secure-store",
-    "expo-font",
-    ["expo-camera", { "cameraPermission": "LaporCepat membutuhkan akses kamera untuk mengambil foto bukti kerusakan." }]
-  ]
-}
